@@ -271,6 +271,7 @@
             </div>
 
             <button id="next-btn" class="btn-action" onclick="nextLevel()">Nächstes Level ➔</button>
+            <button id="skip-btn" class="btn-action" style="display: inline-block; background-color: #95a5a6;" onclick="skipLevel()">Überspringen ⏭</button>
         </div>
 
         <div id="level-menu-screen" style="display: none;">
@@ -476,6 +477,20 @@
             document.getElementById("game-container").innerHTML = `
                 <h1 style="color: var(--success-color);">Gewonnen!</h1>
                 <p>Du hast alle KI-Bilder erraten und alle Adressen gefunden!</p>
+                <p>Restliche Leben: ${lives} von 5</p>
+                <button class="btn-option" style="margin-top:20px; width:auto;" onclick="location.reload()">Nochmal spielen</button>
+            `;
+        }
+    }
+
+    function skipLevel() {
+        currentLevelIndex++;
+        if (currentLevelIndex < gameData.length) {
+            initLevel();
+        } else {
+            document.getElementById("game-container").innerHTML = `
+                <h1 style="color: var(--primary-color);">Fertig!</h1>
+                <p>Du hast alle Level durchgespielt oder übersprungen.</p>
                 <p>Restliche Leben: ${lives} von 5</p>
                 <button class="btn-option" style="margin-top:20px; width:auto;" onclick="location.reload()">Nochmal spielen</button>
             `;
